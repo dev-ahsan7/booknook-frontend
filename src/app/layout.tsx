@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
 import { Navbar } from '@/components/navbar';
+import { SiteFooter } from '@/components/site-footer';
 
 const geist = Geist({
   subsets: ['latin'],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Navbar />
           <main className="flex-1">{children}</main>
+          <SiteFooter />
         </ThemeProvider>
       </body>
     </html>
