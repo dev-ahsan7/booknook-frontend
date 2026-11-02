@@ -44,3 +44,6 @@ next-env.d.ts
 # local tool notes
 AGENTS.md
 CLAUDE.md
+
+.vercel
+.env*
