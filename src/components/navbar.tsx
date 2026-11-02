@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { LogOut, Menu, UserRound } from 'lucide-react';
+import { toast } from 'sonner';
 import { Logo } from '@/components/logo';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -23,11 +24,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-
-type NavUser = {
-  name: string;
-  image?: string | null;
-};
+import { authClient } from '@/lib/auth-client';
 
 const links = [
   { label: 'Home', href: '/' },
@@ -39,13 +36,18 @@ const links = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  // Replaced with the Better Auth session when login is added
-  const user = null as NavUser | null;
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
 
   const visibleLinks = links.filter((link) => !link.isPrivate || user);
 
-  const handleLogout = () => {};
+  const handleLogout = async () => {
+    await authClient.signOut();
+    toast.success('Logged out.');
+    router.push('/');
+  };
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -74,7 +76,9 @@ export function Navbar() {
 
           <ThemeToggle />
 
-          {user ? (
+          {isPending ? (
+            <div className="size-8" />
+          ) : user ? (
             <DropdownMenu>
               <DropdownMenuTrigger
                 aria-label="Open user menu"
@@ -153,7 +157,7 @@ export function Navbar() {
                   </li>
                 ))}
               </ul>
-              {!user && (
+              {!isPending && !user && (
                 <div className="mt-2 flex flex-col gap-2 px-4 sm:hidden">
                   <Button
                     render={<Link href="/login" onClick={closeMenu} />}
