@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { BorrowButton } from '@/components/borrow-button';
 import { getBook } from '@/lib/books';
+import { formatDate } from '@/lib/formatDate';
 
 export const metadata: Metadata = {
   title: 'Book Details',
@@ -18,8 +19,6 @@ export default async function BookDetailsPage({
   if (!book) {
     notFound();
   }
-
-  const isAvailable = book.availableCopies > 0;
 
   return (
     <section className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
@@ -55,13 +54,7 @@ export default async function BookDetailsPage({
             </div>
             <div className="flex justify-between gap-4 py-3">
               <dt className="text-muted-foreground">Added on</dt>
-              <dd className="text-right">
-                {new Date(book.addedAt).toLocaleDateString('en-GB', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                })}
-              </dd>
+              <dd className="text-right">{formatDate(book.addedAt)}</dd>
             </div>
             <div className="flex justify-between gap-4 py-3">
               <dt className="text-muted-foreground">Available copies</dt>
@@ -71,9 +64,11 @@ export default async function BookDetailsPage({
             </div>
           </dl>
 
-          <Button size="lg" className="mt-8" disabled={!isAvailable}>
-            {isAvailable ? 'Borrow This Book' : 'Not Available'}
-          </Button>
+          <BorrowButton
+            bookId={book._id}
+            bookTitle={book.title}
+            isAvailable={book.availableCopies > 0}
+          />
         </div>
       </div>
     </section>
