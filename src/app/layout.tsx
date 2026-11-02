@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 import './globals.css';
 
 const geist = Geist({
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans">
-        <main className="flex-1">{children}</main>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <main className="flex-1">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
