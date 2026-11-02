@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+    <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+      <h1 className="max-w-2xl text-4xl sm:text-5xl">
         Add a book, borrow a book, return a book.
       </h1>
       <p className="mt-4 max-w-xl text-muted-foreground">

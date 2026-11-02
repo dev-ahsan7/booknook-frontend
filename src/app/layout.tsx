@@ -1,16 +1,10 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Zilla_Slab } from 'next/font/google';
+import { Geist } from 'next/font/google';
 import './globals.css';
 
-const dmSans = DM_Sans({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
-});
-
-const zillaSlab = Zilla_Slab({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-zilla-slab',
+  variable: '--font-geist',
 });
 
 export const metadata: Metadata = {
@@ -25,7 +19,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${zillaSlab.variable} h-full antialiased`}
+      className={`${geist.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans">
         <main className="flex-1">{children}</main>
