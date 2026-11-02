@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookCard } from '@/components/book-card';
 import { FadeIn } from '@/components/fade-in';
+import { FaqSection } from '@/components/faq-section';
 import { HomeSlider } from '@/components/home-slider';
-import { HowBorrowingWorks } from '@/components/how-borrowing-works';
-import { TopCategories } from '@/components/top-categories';
+import { ShareBand } from '@/components/share-band';
 import { Button } from '@/components/ui/button';
 import { getBooks } from '@/lib/books';
 
@@ -54,10 +54,10 @@ export default async function Home() {
       </FadeIn>
 
       <FadeIn>
-        <HowBorrowingWorks />
+        <FaqSection />
       </FadeIn>
       <FadeIn>
-        <TopCategories />
+        <ShareBand />
       </FadeIn>
     </>
   );
