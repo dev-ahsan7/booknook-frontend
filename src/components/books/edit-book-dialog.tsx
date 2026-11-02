@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { BookFields } from '@/components/book-fields';
+import { BookFields } from '@/components/books/book-fields';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

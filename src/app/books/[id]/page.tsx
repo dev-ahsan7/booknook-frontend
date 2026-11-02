@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { BorrowButton } from '@/components/borrow-button';
+import { BorrowButton } from '@/components/borrows/borrow-button';
 import { getBook } from '@/lib/books';
 import { formatDate } from '@/lib/formatDate';
 

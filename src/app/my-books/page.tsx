@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import Link from 'next/link';
-import { DeleteBookDialog } from '@/components/delete-book-dialog';
-import { EditBookDialog } from '@/components/edit-book-dialog';
+import { DeleteBookDialog } from '@/components/books/delete-book-dialog';
+import { EditBookDialog } from '@/components/books/edit-book-dialog';
 import { Button } from '@/components/ui/button';
 import { auth } from '@/lib/auth';
 import { getBooks } from '@/lib/books';

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { BookCard } from '@/components/book-card';
-import { FadeIn } from '@/components/fade-in';
+import { BookCard } from '@/components/books/book-card';
+import { FadeIn } from '@/components/shared/fade-in';
 import { getBooks } from '@/lib/books';
 
 export const metadata: Metadata = {

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { BookCard } from '@/components/book-card';
-import { FadeIn } from '@/components/fade-in';
-import { FaqSection } from '@/components/faq-section';
-import { HomeSlider } from '@/components/home-slider';
-import { ShareBand } from '@/components/share-band';
+import { BookCard } from '@/components/books/book-card';
+import { FadeIn } from '@/components/shared/fade-in';
+import { FaqSection } from '@/components/home/faq-section';
+import { HomeSlider } from '@/components/home/home-slider';
+import { ShareBand } from '@/components/home/share-band';
 import { Button } from '@/components/ui/button';
 import { getBooks } from '@/lib/books';
 

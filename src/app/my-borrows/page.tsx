@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ReturnBookButton } from '@/components/return-book-button';
+import { ReturnBookButton } from '@/components/borrows/return-book-button';
 import {
   Table,
   TableBody,

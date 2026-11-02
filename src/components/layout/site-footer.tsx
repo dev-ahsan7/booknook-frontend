@@ -1,4 +1,4 @@
-import { Logo } from '@/components/logo';
+import { Logo } from '@/components/layout/logo';
 
 const contact = [
   { label: 'hello@booknook.app', href: 'mailto:hello@booknook.app' },

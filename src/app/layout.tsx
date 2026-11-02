@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
-import { Navbar } from '@/components/navbar';
-import { SiteFooter } from '@/components/site-footer';
+import { Navbar } from '@/components/layout/navbar';
+import { SiteFooter } from '@/components/layout/site-footer';
 import { Toaster } from '@/components/ui/sonner';
 
 const geist = Geist({
