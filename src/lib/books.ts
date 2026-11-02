@@ -1,5 +1,5 @@
 import { getTokenFromServer } from './getTokenFromServer';
-import type { Book } from './types';
+import type { Book, Borrow } from './types';
 
 const API_URI = process.env.NEXT_PUBLIC_API_URI;
 
@@ -27,6 +27,20 @@ export const getBook = async (id: string): Promise<Book | null> => {
   }
   if (!response.ok) {
     throw new Error('Could not load this book.');
+  }
+
+  return response.json();
+};
+
+export const getBorrows = async (): Promise<Borrow[]> => {
+  const token = await getTokenFromServer();
+  const response = await fetch(`${API_URI}/borrows`, {
+    cache: 'no-store',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    throw new Error('Could not load your borrowed books.');
   }
 
   return response.json();
