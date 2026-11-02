@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { GoogleButton } from '@/components/google-button';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label';
 import { authClient } from '@/lib/auth-client';
 
 export function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -34,8 +33,8 @@ export function LoginForm() {
       return;
     }
 
-    toast.success('Welcome back!');
-    router.push(redirectTo);
+    // A full page load, because the router remembers the old redirect to login
+    window.location.assign(redirectTo);
   };
 
   return (

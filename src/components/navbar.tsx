@@ -47,6 +47,7 @@ export function Navbar() {
     await authClient.signOut();
     toast.success('Logged out.');
     router.push('/');
+    router.refresh();
   };
 
   const closeMenu = () => setMenuOpen(false);
