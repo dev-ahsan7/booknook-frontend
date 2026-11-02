@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BookNook
 
-## Getting Started
+A small online library. Add a book, borrow a book, return a book.
 
-First, run the development server:
+Server repository: [booknook-backend](https://github.com/dev-ahsan7/booknook-backend)
+
+## Features
+
+- Browse every book on the shelf, with the 6 newest shown on the home page
+- Log in with email and password or with Google, and return to the page you wanted after login
+- Add books with a cover image uploaded to imgbb, and edit or delete the books you added
+- Borrow a book for 7 days and return it from My Borrows
+- Available copies go down and up with each borrow and return, and a book with no copies shows "Not Available"
+- A user cannot borrow the same book twice at the same time
+- Private pages and protected API routes checked with JWT
+- Light and dark theme, and a layout that works on phone, tablet and desktop
+
+## Tech stack
+
+- **Client:** Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Swiper, Framer Motion
+- **Authentication:** Better Auth with the MongoDB adapter and JWT
+- **Server:** Express and MongoDB
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app runs on http://localhost:3090. Copy `.env.example` to `.env` and fill in the values first. The server has to be running too.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Value |
+|---|---|
+| `NEXT_PUBLIC_API_URI` | URL of the Express server |
+| `NEXT_PUBLIC_IMGBB_API_KEY` | imgbb API key |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Google OAuth client |
+| `MONGODB_URI` | MongoDB connection string |
+| `BETTER_AUTH_SECRET` | A long random string |
+| `BETTER_AUTH_URL` | URL of this app |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Credits
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Home page photos are from [Unsplash](https://unsplash.com). Starter book covers are from [Open Library](https://openlibrary.org).
