@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { A11y, Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,27 +11,21 @@ const slides = [
   {
     title: 'A small library, open to everyone.',
     text: 'See what other readers have on their shelves and pick your next book.',
-    spines: [84, 96, 78, 100, 88, 92, 80],
+    image: '/images/hero-library.jpg',
+    alt: 'A long aisle of bookshelves lit by hanging bulbs',
   },
   {
     title: 'Share the books you have finished.',
     text: 'Add a book in a minute so it can reach another reader.',
-    spines: [96, 80, 90, 76, 100, 84, 92],
+    image: '/images/hero-share.jpg',
+    alt: 'A hand holding up a small stack of books',
   },
   {
     title: 'Borrow it, read it, bring it back.',
     text: 'Every book is yours for 7 days. Return it with one click.',
-    spines: [78, 100, 86, 94, 80, 90, 82],
+    image: '/images/hero-reading.jpg',
+    alt: 'A person reading an open book in warm sunlight',
   },
-];
-
-const spineWidths = ['w-9', 'w-6', 'w-11', 'w-7', 'w-5', 'w-10', 'w-8'];
-
-const spineColors = [
-  'bg-foreground',
-  'bg-foreground/25',
-  'bg-foreground/60',
-  'border border-foreground/40',
 ];
 
 export function HomeSlider() {
@@ -45,44 +40,36 @@ export function HomeSlider() {
           swiper.autoplay.stop();
         }
       }}
-      className="rounded-2xl bg-muted [--swiper-pagination-bullet-inactive-color:var(--foreground)] [--swiper-pagination-color:var(--foreground)]"
+      className="rounded-2xl bg-muted [--swiper-pagination-bullet-inactive-color:var(--foreground)] [--swiper-pagination-color:var(--foreground)] md:[&_.swiper-pagination]:!w-1/2"
     >
-      {slides.map((slide) => (
+      {slides.map((slide, index) => (
         <SwiperSlide key={slide.title} className="!h-auto">
-          <div className="flex h-full min-h-96 items-center justify-between gap-12 px-6 pt-10 pb-16 sm:px-12 sm:pt-14 sm:pb-20">
-            <div className="max-w-xl">
-              <h2 className="text-4xl leading-tight sm:text-5xl">
+          <div className="grid h-full md:min-h-[26rem] md:grid-cols-2">
+            <div className="flex flex-col justify-center px-6 pt-8 pb-14 sm:px-12 md:py-16">
+              <h2 className="text-3xl leading-tight sm:text-4xl lg:text-5xl">
                 {slide.title}
               </h2>
               <p className="mt-4 max-w-md text-muted-foreground">{slide.text}</p>
-              <Button
-                render={<Link href="/books" />}
-                nativeButton={false}
-                size="lg"
-                className="mt-8"
-              >
-                Browse Books
-              </Button>
+              <div className="mt-8">
+                <Button
+                  render={<Link href="/books" />}
+                  nativeButton={false}
+                  size="lg"
+                >
+                  Browse Books
+                </Button>
+              </div>
             </div>
 
-            <div
-              aria-hidden
-              className="hidden h-56 shrink-0 items-end gap-1 border-b-2 border-foreground pr-8 md:flex"
-            >
-              {slide.spines.map((height, index) => (
-                <span
-                  key={index}
-                  style={{ height: `${height}%` }}
-                  className={`relative rounded-t-sm ${spineWidths[index % spineWidths.length]} ${spineColors[index % spineColors.length]} ${
-                    index === slide.spines.length - 1
-                      ? 'origin-bottom-right rotate-[8deg]'
-                      : ''
-                  }`}
-                >
-                  <span className="absolute inset-x-0 top-4 h-0.5 bg-muted" />
-                  <span className="absolute inset-x-0 top-6 h-0.5 bg-muted" />
-                </span>
-              ))}
+            <div className="relative order-first h-52 sm:h-64 md:order-last md:h-auto">
+              <Image
+                src={slide.image}
+                alt={slide.alt}
+                fill
+                priority={index === 0}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </SwiperSlide>
