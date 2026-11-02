@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookCard } from '@/components/book-card';
+import { FadeIn } from '@/components/fade-in';
 import { HomeSlider } from '@/components/home-slider';
 import { HowBorrowingWorks } from '@/components/how-borrowing-works';
 import { TopCategories } from '@/components/top-categories';
@@ -22,7 +23,7 @@ export default async function Home() {
         <HomeSlider />
       </div>
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <FadeIn className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <h2 className="text-3xl">New Arrivals</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The latest books added by our readers.
@@ -50,10 +51,14 @@ export default async function Home() {
             See All Books
           </Button>
         </div>
-      </section>
+      </FadeIn>
 
-      <HowBorrowingWorks />
-      <TopCategories />
+      <FadeIn>
+        <HowBorrowingWorks />
+      </FadeIn>
+      <FadeIn>
+        <TopCategories />
+      </FadeIn>
     </>
   );
 }
